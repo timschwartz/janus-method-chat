@@ -1,0 +1,23 @@
+{
+  "name": "janus-method-message",
+  "version": "0.0.2",
+  "description": "Adds 'method' message for private communication.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/timschwartz/janus-method-message.git"
+  },
+  "keywords": [
+    "janusvr",
+    "janus",
+    "message"
+  ],
+  "author": "Tim Schwartz",
+  "license": "LGPL 2.1",
+  "bugs": {
+    "url": "https://github.com/timschwartz/janus-method-message/issues"
+  }
+}
