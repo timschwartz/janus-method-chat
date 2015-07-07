@@ -14,11 +14,11 @@ None
 Send 'Hi' to user 'Bob':
 
 ```json
-{“method”: “message”, "data": {"to": "Bob", "message": "Hi"}}
+{"method": "message", "data": {"to": "Bob", "message": "Hi"}}
 ```
 
 'Bob' receives:
 
 ```json
-{“method”: “message”, “data”: {"from": "Alice", “message”: "Hi"}}
+{"method": "message", "data": {"from": "Alice", "message": "Hi"}}
 ```
