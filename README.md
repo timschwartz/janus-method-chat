@@ -1,9 +1,9 @@
-# janus-method-message
-Adds 'message' method for private communication.
+# janus-method-chat
+Replaces built-in 'chat' method, adds private communication.
 
 ## What it does:
 
-Sends a private message from one user to another.
+Enables chatting, including sending a private message from one user to another.
 
 ## Configuration options:
 
@@ -11,14 +11,27 @@ None
 
 ## Syntax:
 
+Send 'Hello' to everyone:
+
+```json
+{"method": "chat", "data": {"message": "Hi"}}
+```
+
+Everyone in room receives:
+
+```json
+{"method":"user_chat", "data":{"roomId":"69de79e1077103cb59d1a890e96c7ef2","userId":"Alice", "message":"Hello"}}
+```
+
+
 Send 'Hi' to user 'Bob':
 
 ```json
-{"method": "message", "data": {"to": "Bob", "message": "Hi"}}
+{"method": "chat", "data": {"toUserId": "Bob", "message": "Hi"}}
 ```
 
 'Bob' receives:
 
 ```json
-{"method": "message", "data": {"from": "Alice", "message": "Hi"}}
+{"method": "user_chat", "data": {"userId": "Alice", "toUserId": "Bob", "message": "Hi"}}
 ```

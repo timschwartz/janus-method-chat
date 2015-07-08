@@ -1,20 +1,23 @@
 function Plugin() {
-    console.log("Loading janus-method-message");
-    log.info("Loading janus-method-message");
+    console.log("Loading janus-method-chat");
+    log.info("Loading janus-method-chat");
 }
 
 Plugin.prototype.call = function(data) {
+    if(data.data !== undefined) data.message = data.data;
     var list = data._userList;
-    to = data._userList[data.to];
-    from = data._userList[data._userId];
+    var toUser = data._userList[data.toUserId];
+    var fromUser = data._userList[data._userId];
+    var roomEmit = data._roomEmit;
 
-    if(to === undefined) {
-        from.send("error", {message: "Could not send message to "+data.to});
+    if(toUser === undefined) {
+        var out = { "roomId": fromUser.roomId, "userId": data._userId, "message": data.message }; 
+        roomEmit("user_chat", out);
         return;
     } 
 
-    var out = { "from": data._userId, "message": data.message };
-    to.send("message", out);
+    var out = { "userId": data._userId, "toUserId": data.toUserId, "message": data.message };
+    toUser.send("user_chat", out);
 }
 
 module.exports = new Plugin();
