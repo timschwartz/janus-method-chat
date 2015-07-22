@@ -10,14 +10,16 @@ Plugin.prototype.call = function(data) {
     var fromUser = data._userList[data._userId];
     var roomEmit = data._roomEmit;
 
-    if(toUser === undefined) {
+    if((toUser === undefined) && (data.toUserId === undefined)) {
         var out = { "roomId": fromUser.roomId, "userId": data._userId, "message": data.message }; 
         roomEmit("user_chat", out);
         return;
     } 
 
-    var out = { "userId": data._userId, "toUserId": data.toUserId, "message": data.message };
-    toUser.send("user_chat", out);
+    if(toUser !== undefined) {
+        var out = { "userId": data._userId, "toUserId": data.toUserId, "message": data.message };
+        toUser.send("user_chat", out);
+    }
 }
 
 module.exports = new Plugin();
